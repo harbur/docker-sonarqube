@@ -1,0 +1,17 @@
+postgresql:
+  image: orchardup/postgresql:latest
+  environment:
+    - POSTGRESQL_USER=sonar
+    - POSTGRESQL_PASS=xaexohquaetiesoo
+    - POSTGRESQL_DB=sonar
+sonarqube:
+  image: spiddy/sonarqube:latest
+  links:
+    - postgresql:db
+  environment:
+    - DB_USER=sonar
+    - DB_PASS=xaexohquaetiesoo
+    - DB_NAME=sonar
+  ports:
+    - "9000"
+    - "443"

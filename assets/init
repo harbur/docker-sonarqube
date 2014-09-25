@@ -1,0 +1,53 @@
+#!/bin/bash
+set -e
+
+trap appStop SIGINT SIGTERM
+
+# Variables
+DB_HOST=$DB_PORT_5432_TCP_ADDR
+
+# Configure wrapper.conf
+sed -i 's|#wrapper.java.additional.6=-server|wrapper.java.additional.6=-server|g' /opt/sonar/conf/wrapper.conf
+
+# Configure sonar.properties
+sed -i 's|sonar.jdbc.password=sonar|sonar.jdbc.password=xaexohquaetiesoo|g' /opt/sonar/conf/sonar.properties
+sed -i 's|sonar.jdbc.url=jdbc:h2|#sonar.jdbc.url=jdbc:h2|g' /opt/sonar/conf/sonar.properties
+sed -i 's|#sonar.jdbc.url=jdbc:postgresql://localhost|sonar.jdbc.url=jdbc:postgresql://'"${DB_HOST}"'|g' /opt/sonar/conf/sonar.properties
+
+appStart () {
+  echo "Starting sonarqube..."
+  set +e
+  /opt/sonar/bin/linux-x86-64/sonar.sh console
+}
+
+appHelp () {
+  echo "Available options:"
+  echo " app:start          - Starts the sonarqube server (default)"
+  echo " app:help           - Displays the help"
+  echo " [command]          - Execute the specified linux command eg. bash."
+}
+
+case "$1" in
+  app:start)
+    appStart
+    ;;
+  app:help)
+    appHelp
+    ;;
+  *)
+    if [ -x $1 ]; then
+      $1
+    else
+      prog=$(which $1)
+      if [ -n "${prog}" ] ; then
+        shift 1
+        $prog $@
+      else
+        appHelp
+      fi
+    fi
+    ;;
+esac
+
+exit 0
+

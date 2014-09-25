@@ -12,7 +12,7 @@ help:
 	@echo "   6. make port         - view the exposed port"
 
 build:
-	@docker build --tag=${USER}/sonarqube .
+	@docker build --tag=harbur/sonarqube .
 
 quickstart:
 	@echo "Starting sonarqube..."

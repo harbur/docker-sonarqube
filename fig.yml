@@ -4,6 +4,8 @@ postgresql:
     - POSTGRESQL_USER=sonar
     - POSTGRESQL_PASS=xaexohquaetiesoo
     - POSTGRESQL_DB=sonar
+  volumes:
+    - /opt/db/sonarqube/:/var/lib/postgresql
 sonarqube:
   image: harbur/sonarqube:latest
   links:

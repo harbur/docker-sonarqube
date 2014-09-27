@@ -15,7 +15,7 @@ build:
 	@docker build --tag=harbur/sonarqube .
 
 quickstart:
-	@echo "Starting sonarqube..."
+	@echo "Starting SonarQube..."
 	@fig up -d
 	@echo "Please be patient. This could take a while..."
 	@echo "Type 'make port' to view the exposed port"
@@ -33,4 +33,4 @@ purge: stop
 	@fig rm
 
 port:
-	@echo "Sonarqube will be available at http://$(shell sleep 3; docker port dockersonarqube_sonarqube_1 9000)"
+	@echo "Sonarqube will be available at http://$(shell docker port dockersonarqube_sonarqube_1 9000)"

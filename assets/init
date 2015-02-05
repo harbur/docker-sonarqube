@@ -21,7 +21,8 @@ sed -i 's|#sonar.jdbc.url=jdbc:postgresql://localhost/sonar|sonar.jdbc.url=jdbc:
 appStart () {
   echo "Starting sonarqube..."
   set +e
-  /opt/sonar/bin/linux-x86-64/sonar.sh console
+  /opt/sonar/bin/linux-x86-64/sonar.sh start
+  tail -f /opt/sonar/logs/sonar.log
 }
 
 appHelp () {

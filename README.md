@@ -58,6 +58,8 @@ docker build --tag="$USER/sonarqube" .
 Run the SonarQube with Fig:
 
 ```bash
+git clone https://github.com/harbur/docker-sonarqube.git
+cd docker-sonarqube
 fig up
 ```
 

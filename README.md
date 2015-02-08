@@ -55,7 +55,7 @@ docker build --tag="$USER/sonarqube" .
 
 # Quick Start
 
-Run the SonarQube with Fig:
+Run the SonarQube with Fig. Fig uses a `fig.yml` file that describes the environment.
 
 ```bash
 git clone https://github.com/harbur/docker-sonarqube.git

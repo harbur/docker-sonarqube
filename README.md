@@ -13,13 +13,13 @@ Current Version: **5.0**
 Before you start, you need to make sure you have the following dependencies installed:
 
 * [Install Docker](http://docs.docker.com/installation/)
-* [Install Fig](http://www.fig.sh/install.html)
+* [Install Docker Compose](http://docs.docker.com/compose/install/)
 
 Now you can verify that the installation is ok with the following commands:
 
 <pre>
 docker version
-fig --version
+docker-compose --version
 </pre>
 
 # Reporting Issues
@@ -29,7 +29,7 @@ If you have any issues you can report them on the [issues](https://github.com/ha
 In your report please make sure to add:
 
 - Output of the `docker version` command
-- The exact `docker run` or `fig` command you used (mask any sensitive info)
+- The exact `docker run` or `docker-compose` command you used (mask any sensitive info)
 
 # Installation
 
@@ -55,12 +55,12 @@ docker build --tag="$USER/sonarqube" .
 
 # Quick Start
 
-Run the SonarQube with Fig. Fig uses a `fig.yml` file that describes the environment.
+Run the SonarQube with Docker Compose. Docker Compose uses a `fig.yml` or `docker-compose.yml` file that describes the environment.
 
 ```bash
 git clone https://github.com/harbur/docker-sonarqube.git
 cd docker-sonarqube
-fig up
+docker-compose up
 ```
 
 **NOTE**: Please allow a minute or two for the SonarQube application to start.
@@ -82,11 +82,11 @@ You should now have the SonarQube application up and ready for testing. If you w
 
 ## Database
 
-SonarQube uses PostgreSQL database backend to store its data. Database is launched as separate container and the linking is handled by Fig.
+SonarQube uses PostgreSQL database backend to store its data. Database is launched as separate container and the linking is handled by Docker Compose.
 
-The DB container is configured to create automatically the user and the database. The user credentials, database name and the database hostname are all injected to the SonarQube container by fig using environment variables and container links.
+The DB container is configured to create automatically the user and the database. The user credentials, database name and the database hostname are all injected to the SonarQube container by docker-compose using environment variables and container links.
 
-The SonarQube container does **not** contain database by itself, there is no simple-container scenario. It needs to run with `fig` commands (or you can craft manually the `docker` commands). This makes it a lot more portable, and follows the [Single Responsibility Principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) and aligns well with the [Service-oriented Architecture](http://en.wikipedia.org/wiki/Service-oriented_architecture) design pattern.
+The SonarQube container does **not** contain database by itself, there is no simple-container scenario. It needs to run with `docker-compose` commands (or you can craft manually the `docker` commands). This makes it a lot more portable, and follows the [Single Responsibility Principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) and aligns well with the [Service-oriented Architecture](http://en.wikipedia.org/wiki/Service-oriented_architecture) design pattern.
 This works seamlessly in the simple-host / multi-container scenario.
 The multi-host / multi-container scenario is explained later on.
 
@@ -96,7 +96,7 @@ The database used is `orchardup/postgresql` and uses a Volume to store the datab
 
 The Postgresql database container is configured to persist data inside a Volume: `/var/lib/postgresql`.
 
-If you want to mount the volume locally, you can append the following lines at the fig.yml inside the `postgres` section:
+If you want to mount the volume locally, you can append the following lines at the `fig.yml` or `docker-compose.yml` inside the `postgres` section:
 
 **NOTE**: If you mount the volume locally, you'll singularize your setup, making all instances point to the same directory, safe if you want only one SonarQube instance.
 
@@ -110,11 +110,11 @@ If you want to mount the volume locally, you can append the following lines at t
 In order to connect to the database you can do the following:
 
 ```bash
-fig up -d postgresql
-fig run postgresql bash -c 'PGPASSWORD=$POSTGRESQL_PASS psql -h $POSTGRESQL_1_PORT_5432_TCP_ADDR $POSTGRESQL_DB $POSTGRESQL_USER'
+docker-compose up -d postgresql
+docker-compose run postgresql bash -c 'PGPASSWORD=$POSTGRESQL_PASS psql -h $POSTGRESQL_1_PORT_5432_TCP_ADDR $POSTGRESQL_DB $POSTGRESQL_USER'
 ```
 
-This will launch the database of PostgreSQL (first command) and then connect to the database with a client (second command). The containers are linked together automatically by fig and the variables are used to pass the connection info.
+This will launch the database of PostgreSQL (first command) and then connect to the database with a client (second command). The containers are linked together automatically by `docker-compose` and the variables are used to pass the connection info.
 
 # Shell Access
 

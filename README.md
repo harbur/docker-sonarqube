@@ -55,7 +55,7 @@ docker build --tag="$USER/sonarqube" .
 
 # Quick Start
 
-Run the SonarQube with Docker Compose. Docker Compose uses a `fig.yml` or `docker-compose.yml` file that describes the environment.
+Run the SonarQube with Docker Compose. Docker Compose uses a `docker-compose.yml` file that describes the environment.
 
 ```bash
 git clone https://github.com/harbur/docker-sonarqube.git
@@ -96,7 +96,7 @@ The database used is `orchardup/postgresql` and uses a Volume to store the datab
 
 The Postgresql database container is configured to persist data inside a Volume: `/var/lib/postgresql`.
 
-If you want to mount the volume locally, you can append the following lines at the `fig.yml` or `docker-compose.yml` inside the `postgres` section:
+If you want to mount the volume locally, you can append the following lines at the `docker-compose.yml` inside the `postgres` section:
 
 **NOTE**: If you mount the volume locally, you'll singularize your setup, making all instances point to the same directory, safe if you want only one SonarQube instance.
 

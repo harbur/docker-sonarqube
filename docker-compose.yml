@@ -6,7 +6,7 @@ postgresql:
     - POSTGRESQL_DB=sonar
   volumes:
     - /opt/db/sonarqube/:/var/lib/postgresql
-  ports: 
+  ports:
     - "5432:5432"
 sonarqube:
   image: harbur/sonarqube:latest

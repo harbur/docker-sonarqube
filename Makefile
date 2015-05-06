@@ -16,21 +16,21 @@ build:
 
 quickstart:
 	@echo "Starting SonarQube..."
-	@fig up -d
+	@docker-compose up -d
 	@echo "Please be patient. This could take a while..."
 	@echo "Type 'make port' to view the exposed port"
 	@echo "Type 'make logs' for the logs"
 
 stop:
 	@echo "Stopping sonarqube..."
-	@fig stop
+	@docker-compose stop
 
 logs:
-	@fig logs
+	@docker-compose logs
 
 purge: stop
 	@echo "Removing stopped container..."
-	@fig rm
+	@docker-compose rm
 
 port:
 	@echo "Sonarqube will be available at http://$(shell docker port dockersonarqube_sonarqube_1 9000)"

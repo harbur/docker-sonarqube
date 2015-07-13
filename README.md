@@ -42,7 +42,7 @@ docker pull harbur/sonarqube:latest
 The image builds are being tagged. You can pull a particular version of SonarQube by specifying the version number. For example,
 
 ```bash
-docker pull harbur/sonarqube:4.4
+docker pull harbur/sonarqube:5.1
 ```
 
 Alternately you can build the image yourself.

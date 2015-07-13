@@ -6,7 +6,7 @@ Dockerfile to build a SonarQube container image.
 
 ## Version
 
-Current Version: **5.0**
+Current Version: **5.1**
 
 # Dependencies
 

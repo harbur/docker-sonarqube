@@ -9,7 +9,9 @@ postgresql:
   ports:
     - "5432:5432"
 sonarqube:
-  image: harbur/sonarqube:latest
+  #image: harbur/sonarqube:latest
+  build: ./
+  dockerfile: Dockerfile
   links:
     - postgresql:db
   environment:

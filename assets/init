@@ -13,8 +13,8 @@ DB_PASS=${DB_PASS:-xaexohquaetiesoo}
 sed -i 's|#wrapper.java.additional.6=-server|wrapper.java.additional.6=-server|g' /opt/sonar/conf/wrapper.conf
 
 # Configure sonar.properties
-sed -i 's|#sonar.jdbc.username=sonar|sonar.jdbc.username='"${DB_USER}"'|g' /opt/sonar/conf/sonar.properties
-sed -i 's|#sonar.jdbc.password=sonar|sonar.jdbc.password='"${DB_PASS}"'|g' /opt/sonar/conf/sonar.properties
+sed -i 's|#sonar.jdbc.username=|sonar.jdbc.username='"${DB_USER}"'|g' /opt/sonar/conf/sonar.properties
+sed -i 's|#sonar.jdbc.password=|sonar.jdbc.password='"${DB_PASS}"'|g' /opt/sonar/conf/sonar.properties
 sed -i 's|sonar.jdbc.url=jdbc:h2|#sonar.jdbc.url=jdbc:h2|g' /opt/sonar/conf/sonar.properties
 sed -i 's|#sonar.jdbc.url=jdbc:postgresql://localhost/sonar|sonar.jdbc.url=jdbc:postgresql://'"${DB_HOST}"'/'"${DB_NAME}"'|g' /opt/sonar/conf/sonar.properties
 

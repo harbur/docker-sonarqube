@@ -6,7 +6,7 @@ Dockerfile to build a SonarQube container image.
 
 ## Version
 
-Current Version: **5.1**
+Current Version: **5.6**
 
 # Dependencies
 
@@ -42,10 +42,10 @@ docker pull harbur/sonarqube:latest
 The image builds are being tagged. You can pull a particular version of SonarQube by specifying the version number. For example,
 
 ```bash
-docker pull harbur/sonarqube:5.1
+docker pull harbur/sonarqube:5.6
 ```
 
-Alternately you can build the image yourself.
+Alternately you can build the image yourself if you run 5.6.
 
 ```bash
 git clone https://github.com/harbur/docker-sonarqube.git
@@ -62,6 +62,8 @@ git clone https://github.com/harbur/docker-sonarqube.git
 cd docker-sonarqube
 docker-compose up
 ```
+
+**NOTE**: It will build Sonar 5.6 container. If you want to run pre build 5.1, please edit the docker-compose.yml accordingly.
 
 **NOTE**: Please allow a minute or two for the SonarQube application to start.
 
